@@ -1,0 +1,7 @@
+{
+  "name": "peliculas-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
