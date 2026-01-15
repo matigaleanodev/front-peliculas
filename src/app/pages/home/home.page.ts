@@ -1,20 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, computed, inject, OnInit } from '@angular/core';
+import { MovieCardComponent } from 'src/app/shared/components/movie-card/movie-card.component';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+} from '@ionic/angular/standalone';
+import { MovieService } from 'src/app/shared/services/movie/movie.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonCol,
+    IonRow,
+    IonGrid,
+    IonContent,
+    IonTitle,
+    IonToolbar,
+    IonHeader,
+    MovieCardComponent,
+  ],
 })
 export class HomePage implements OnInit {
+  private readonly _service = inject(MovieService);
 
-  constructor() { }
+  movies = computed(() => this._service.movies());
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

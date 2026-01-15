@@ -1,0 +1,12 @@
+<ion-card>
+  <img [src]="movie().poster" [alt]="movie().title" />
+
+  <ion-card-header>
+    <ion-card-title>{{ movie().title }}</ion-card-title>
+    <ion-card-subtitle>{{ movie().year }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-button expand="block"> Agregar a agenda </ion-button>
+  </ion-card-content>
+</ion-card>
