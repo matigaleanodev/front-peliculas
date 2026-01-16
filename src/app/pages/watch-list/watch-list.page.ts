@@ -1,20 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, computed, inject, OnInit } from '@angular/core';
+import {
+  IonHeader,
+  IonCol,
+  IonRow,
+  IonGrid,
+  IonContent,
+  IonToolbar,
+  IonTitle,
+} from '@ionic/angular/standalone';
+import { WatchListService } from 'src/app/shared/services/watch-list/watch-list.service';
+import { Movie } from 'src/app/shared/models/movie.model';
+import { MovieCardComponent } from 'src/app/shared/components/movie-card/movie-card.component';
 
 @Component({
   selector: 'app-watch-list',
   templateUrl: './watch-list.page.html',
   styleUrls: ['./watch-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonHeader,
+    MovieCardComponent,
+  ],
 })
-export class WatchListPage implements OnInit {
+export class WatchListPage {
+  readonly _service = inject(WatchListService);
 
-  constructor() { }
+  readonly watchList = computed(() => this._service.watchList());
 
-  ngOnInit() {
+  removeMovie(movie: Movie) {
+    this._service.removeMovie(movie);
   }
-
 }

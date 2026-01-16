@@ -9,7 +9,11 @@
     <ion-row>
       @for (movie of movies(); track $index) {
       <ion-col size="12" size-md="4" size-lg="3">
-        <app-movie-card [movie]="movie" />
+        <app-movie-card
+          [movie]="movie"
+          actionName="Agendar Pelicula"
+          (action)="addMovieToWatchList($event)"
+        />
       </ion-col>
       }
     </ion-row>

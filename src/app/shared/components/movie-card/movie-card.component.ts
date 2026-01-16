@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { Movie } from '../../models/movie.model';
 import {
   IonCard,
@@ -22,10 +22,13 @@ import {
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
 })
-export class MovieCardComponent implements OnInit {
+export class MovieCardComponent {
   readonly movie = input.required<Movie>();
+  readonly actionName = input<string>();
 
-  constructor() {}
+  readonly action = output<Movie>();
 
-  ngOnInit() {}
+  onCLick() {
+    this.action.emit(this.movie());
+  }
 }

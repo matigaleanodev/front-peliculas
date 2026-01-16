@@ -10,6 +10,8 @@ import {
   IonCol,
 } from '@ionic/angular/standalone';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
+import { Movie } from 'src/app/shared/models/movie.model';
+import { WatchListService } from 'src/app/shared/services/watch-list/watch-list.service';
 
 @Component({
   selector: 'app-home',
@@ -27,11 +29,13 @@ import { MovieService } from 'src/app/shared/services/movie/movie.service';
     MovieCardComponent,
   ],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   private readonly _service = inject(MovieService);
+  private readonly _watchList = inject(WatchListService);
 
-  movies = computed(() => this._service.movies());
-  constructor() {}
+  readonly movies = computed(() => this._service.movies());
 
-  ngOnInit() {}
+  addMovieToWatchList(movie: Movie) {
+    this._watchList.addMovie(movie);
+  }
 }
